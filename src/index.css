@@ -1,0 +1,225 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 252 53% 51%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 243 31% 20%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 240 25% 15%;
+    --muted-foreground: 240 10% 65%;
+
+    --accent: 250 72% 20%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 25% 20%;
+    --input: 240 25% 20%;
+    --ring: 252 53% 51%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 240 45% 15%;
+    --sidebar-foreground: 240 10% 95%;
+    --sidebar-primary: 252 53% 51%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 25% 18%;
+    --sidebar-accent-foreground: 240 10% 95%;
+    --sidebar-border: 240 25% 20%;
+    --sidebar-ring: 252 53% 51%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-quantum-darkest-blue text-foreground;
+  }
+}
+
+@layer components {
+  .quantum-card {
+    @apply bg-quantum-darkest-blue rounded-lg border border-quantum-medium-purple/30 p-6 transition-all duration-300 hover:border-quantum-medium-purple hover:shadow-lg hover:shadow-quantum-medium-purple/20;
+  }
+
+  .quantum-glow {
+    @apply relative after:absolute after:-inset-px after:-z-10 after:rounded-lg after:bg-gradient-to-r after:from-quantum-medium-purple after:to-quantum-dark-purple after:opacity-25 after:blur-md hover:after:opacity-40;
+  }
+
+  .quantum-button {
+    @apply inline-flex items-center justify-center rounded-md bg-quantum-medium-purple px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-quantum-dark-purple hover:shadow-md hover:shadow-quantum-medium-purple/20 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring;
+  }
+
+  .quantum-button-primary {
+    @apply quantum-button bg-quantum-medium-purple text-white hover:bg-quantum-dark-purple;
+  }
+  
+  .quantum-input {
+    @apply bg-quantum-darkest-blue/80 border-quantum-medium-purple/30 focus:border-quantum-medium-purple focus:ring-quantum-medium-purple;
+  }
+
+  .tech-illustration {
+    @apply h-[400px] w-full relative;
+  }
+  
+  /* Map related styles */
+  .quantum-marker {
+    @apply relative;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .quantum-marker-inner {
+    @apply absolute inset-0 bg-quantum-medium-purple rounded-full;
+    transform: translate(-50%, -50%);
+  }
+  
+  .quantum-marker-pulse {
+    @apply absolute bg-quantum-medium-purple/50 rounded-full;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    animation: quantum-pulse 2s infinite;
+  }
+  
+  .quantum-popup {
+    @apply rounded-lg border border-quantum-medium-purple/30 overflow-hidden;
+  }
+  
+  .quantum-popup-content {
+    @apply p-3 bg-quantum-darkest-blue/90 backdrop-blur-md;
+  }
+  
+  .mapboxgl-ctrl-logo {
+    @apply opacity-50;
+  }
+  
+  .mapboxgl-ctrl-bottom-right,
+  .mapboxgl-ctrl-bottom-left {
+    @apply z-0;
+  }
+  
+  .mapboxgl-popup {
+    @apply z-10;
+  }
+  
+  .mapboxgl-popup-content {
+    @apply bg-quantum-darkest-blue/90 backdrop-blur-md rounded-lg border border-quantum-medium-purple/30 p-0 shadow-lg shadow-quantum-medium-purple/20;
+  }
+  
+  .mapboxgl-popup-close-button {
+    @apply text-quantum-light-purple text-lg p-1 pr-2;
+  }
+}
+
+/* Particles Animation */
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.2);
+  animation: float 8s infinite ease-in-out;
+}
+
+/* Shimmer Effect */
+.shimmer {
+  background: linear-gradient(
+    90deg, 
+    rgba(255,255,255,0) 0%, 
+    rgba(255,255,255,0.1) 50%, 
+    rgba(255,255,255,0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #baa8d4, #524db6, #3d3e7e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: textGradient 3s linear infinite;
+}
+
+/* Map marker pulse animation */
+@keyframes quantum-pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Add connection line animations */
+@keyframes pulse-line {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes textGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -500px 0;
+  }
+  100% {
+    background-position: 500px 0;
+  }
+}
